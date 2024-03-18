@@ -1,3 +1,4 @@
+import { v4 as idAletorio } from "uuid";
 //clase nota
 export class Nota {
     //Propiedades
@@ -8,10 +9,10 @@ export class Nota {
 
     //Constructores
     constructor(descripccion){
-        this.id = 1;
+        this.id = idAletorio();
         this.descripccion = descripccion;
         this.estado = false;
         this.fecha = new Date();
     }
 
- }
+}
