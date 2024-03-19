@@ -46,12 +46,22 @@ export const App = (elementoHtml) =>{
         evento.target.value = ''//Se deja en blanco el imput para escribir una nueva nota 
     })
 
-    //Evento para marcar la nota realiada o no 
+    //Evento para marcar la nota realizada o no 
     listaNotas.addEventListener('click', (evento) =>{
         const elemento = evento.target.closest('[data-id]'); //al darle click Busca el elemento mas cercano que tenga el atributo "data-id"
         notaStore.modificarEstadoNota(elemento.getAttribute(`data-id`))//elemento.getAttribute accede al id de la nota y este se pasa al cambio de estado
         displayNotas();//Se vuelve a llamar para que cargue la modificacion
-       })
-    
+    })
+
+    //Evento para eliminar una nota
+
+    listaNotas.addEventListener('click', (evento) =>{       
+        if(evento.target.className === 'destroy'){// Si se oprime la x elimina la nota 
+            const elemento = evento.target.closest('[data-id]'); //al darle click Busca el elemento mas cercano que tenga el atributo "data-id"
+            notaStore.eliminarNota(elemento.getAttribute(`data-id`))//elemento.getAttribute accede al id de la nota y este se pasa al cambio de estado
+            displayNotas();//Se vuelve a llamar para que cargue la modificacio
+        }
+        return;    
+   })
 
 }
