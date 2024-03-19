@@ -8,7 +8,7 @@ const Filtros = {
 }
 
 
-const contenedor = {
+const contenedorNotas = {
     notas : [
         new Nota('Hacer desayuno'),
         new Nota('Hacer almuerzo'),
@@ -17,11 +17,48 @@ const contenedor = {
     filtros : Filtros.Todo
 }
 
-const iniciarStore = () =>{
-    console.log('Iniciar store');
-    console.log(contenedor);
+const iniciarNotas = () =>{
+    console.log('Iniciar notas');
+    console.log(contenedorNotas);
 }
 
+const cargarNotas = () => {
+    throw new Error ('No implementado');
+}
+
+const anadirNota = (descripccion) => {
+    throw new Error ('No implementado');
+}
+
+const modificarNota = (notaId) => {
+    throw new Error ('No implementado');
+}
+const eliminarNota = (notaId) => {
+    throw new Error ('No implementado');
+}
+
+const borrarCompletados = () =>{
+    throw new Error ('No implementado');
+
+}
+
+const establecerFiltro = (nuevoFiltro = Filtros.Todo) =>{
+    throw new Error ('No implementado');
+}
+
+const notasFiltro = () => {
+    throw new Error ('No implementado');
+
+}
+
+
 export default {
-    iniciarStore
+    iniciarNotas,
+    cargarNotas,
+    anadirNota,
+    modificarNota,
+    eliminarNota,
+    borrarCompletados,
+    establecerFiltro,
+    notasFiltro
 }

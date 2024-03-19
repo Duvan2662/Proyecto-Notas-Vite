@@ -3,5 +3,5 @@ import { App } from './src/notas/app';
 import notaStore from "./src/store/nota.store";
 
 
-notaStore.iniciarStore();
+notaStore.iniciarNotas();
 App('#app');
