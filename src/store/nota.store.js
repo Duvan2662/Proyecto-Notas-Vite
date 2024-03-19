@@ -13,6 +13,9 @@ const contenedorNotas = {
         new Nota('Hacer desayuno'),
         new Nota('Hacer almuerzo'),
         new Nota('Hacer comida'),
+        new Nota('Hacer tareas'),
+        new Nota('Ir a trabajar'),
+
     ],
     filtros : Filtros.Todas
 }
