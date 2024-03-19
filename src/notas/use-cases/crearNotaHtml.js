@@ -8,16 +8,18 @@ import { Nota } from "../models/notas.models";
 
 export const crearNotaHtml = (nota) =>{
     
-    const checar = '';//Me permite marcar o no marcar el chulo en la nota 
+    let  checar = '';//Me permite marcar o no marcar el chulo en la nota 
     const {descripccion,estado,id} = nota; //Destructuracion de un objeto 
 
     if (!nota) {
         throw new Error ('El objeto nota es necesario para crearlo');
     }
 
-    //Si el estado es true osea realizada la nota entonces se marca  
+    //Si el estado es true osea realizada la nota entonces se marca si no se deja vacio  
     if(estado){
         checar = 'checked'
+    }else{
+        checar = ''
     }
 
     const html = `
