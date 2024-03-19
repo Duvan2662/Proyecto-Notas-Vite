@@ -7,12 +7,35 @@ import { Nota } from "../models/notas.models";
  */
 
 export const crearNotaHtml = (nota) =>{
+    
+    const checar = '';//Me permite marcar o no marcar el chulo en la nota 
+    const {descripccion,estado,id} = nota; //Destructuracion de un objeto 
+
     if (!nota) {
         throw new Error ('El objeto nota es necesario para crearlo');
     }
-    const html = `<h1> ${nota.descripccion}</h1>`; //Lo que se va a añadir en este caso la nota
+
+    //Si el estado es true osea realizada la nota entonces se marca  
+    if(estado){
+        checar = 'checked'
+    }
+
+    const html = `
+        <div class="view">
+            <input class="toggle" type="checkbox" ${checar}>
+            <label>${descripccion}</label>
+            <button class="destroy"></button>
+        </div>
+        <input class="edit" value="Create a TodoMVC template">
+    `; //Lo que se va a añadir en este caso la nota
+
     const liElemento = document.createElement('li')//creacion de un elemento li
-    liElemento.innerHTML = html;//añade la nota en el elemento lis
+    liElemento.innerHTML = html;//añade la nota en el elemento li
+    liElemento.setAttribute(`data-id`,id)//añade el atributo del id de la nota a cada li 
+
+    if(estado){ //Si el estado es true osea realizada la nota entonces se le coloca esta clase para que aparezca subrayada
+        liElemento.classList.add('completed');
+    }
 
     return liElemento; //Retorna el elemento li con la nota
 }
