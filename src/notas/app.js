@@ -1,13 +1,14 @@
 import html from '../notas/app.html?raw';
 import notaStore, { Filtros } from '../store/nota.store';
-import { renderNota } from '../notas/use-cases/index';
+import { renderNota,contNotasPendientes } from '../notas/use-cases/index';
 
 //Nombres de los elementos HTML
 const ElementosIDs = {
     limpiarNotas :`.clear-completed`,
     ListaNotas : `.todo-list`,
     NuevaNota : `.new-todo`, 
-    NotaFiltro : `.filtro`
+    NotaFiltro : `.filtro`,
+    contadotHtml: `#pending-count`
 }
 
 /**
@@ -20,6 +21,11 @@ export const App = (elementoHtml) =>{
     const displayNotas = () => {
         const notas = notaStore.obtenerNotas(notaStore.notasFiltro());//Obtinene todas las notas del contenedor de notas 
         renderNota(ElementosIDs.ListaNotas,notas);
+        actualizarContador();
+    }
+
+    const actualizarContador = () =>{
+        contNotasPendientes(ElementosIDs.contadotHtml);
     }
 
     (()=> {
