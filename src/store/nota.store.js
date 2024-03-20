@@ -1,7 +1,7 @@
 import { Nota } from "../notas/models/notas.models";
 
 //Estados de las notas 
-const Filtros = {
+export const Filtros = {
     Todas       : 'Todas',
     Completado : 'Completado',
     Pendiente  : 'Pendiente'

@@ -1,12 +1,13 @@
 import html from '../notas/app.html?raw';
-import notaStore from '../store/nota.store';
+import notaStore, { Filtros } from '../store/nota.store';
 import { renderNota } from '../notas/use-cases/index';
 
 //Nombres de los elementos HTML
 const ElementosIDs = {
     limpiarNotas :`.clear-completed`,
     ListaNotas : `.todo-list`,
-    NuevaNota : `.new-todo`
+    NuevaNota : `.new-todo`, 
+    NotaFiltro : `.filtro`
 }
 
 /**
@@ -32,7 +33,7 @@ export const App = (elementoHtml) =>{
     const nuevaDescripcion = document.querySelector(ElementosIDs.NuevaNota);
     const listaNotas = document.querySelector(ElementosIDs.ListaNotas);
     const limpiarNotas = document.querySelector(ElementosIDs.limpiarNotas);
-
+    const filtroSeleccionado = document.querySelectorAll(ElementosIDs.NotaFiltro);
     //Eventos
 
     //Evento para insertar una nueva nota  
@@ -71,5 +72,31 @@ export const App = (elementoHtml) =>{
     notaStore.borrarCompletados();
     displayNotas();
    });
+
+   //Eventos para los filtros de las notas
+   filtroSeleccionado.forEach(elemento => {//Recorre toda la lista de elementos del html que tienen la clase 'filtro'
+        elemento.addEventListener('click', (evento)=>{//A cada elemento se le pone un evento de click
+        
+            filtroSeleccionado.forEach(elm =>{//Recorre toda la lista de elementos del html que tienen la clase 'filtro'
+                elm.classList.remove('selected');//Se les quita el select (La parte que brilla alrededor del boton)
+            });
+
+            evento.target.classList.add('selected');//Se le agrega el select al que se oprimio (La parte que brilla alrededor del boton)
+
+            switch (evento.target.text) {//Tomamos el valor(texto) que ahi en el elemento seleccionado 
+                case 'Todos':
+                    notaStore.establecerFiltro(Filtros.Todas);//Establece el filtro que selecciono el usuario
+                    break;
+                case 'Pendientes':
+                    notaStore.establecerFiltro(Filtros.Pendiente);
+                    break;    
+                case 'Completados':
+                    notaStore.establecerFiltro(Filtros.Completado);
+                    break;    
+            }
+            displayNotas();
+        })
+    });
+
 
 }
