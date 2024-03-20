@@ -85,7 +85,7 @@ const eliminarNota = (notaId) => {
 
 //Funcion para borrar una nota
 const borrarCompletados = () =>{
-    contenedorNotas.notas = contenedorNotas.notas.filter(nota => nota.estado); //Devuelve el arreglo de la notas con el estado No completado = false
+    contenedorNotas.notas = contenedorNotas.notas.filter(nota => !nota.estado); //Devuelve el arreglo de la notas con el estado No completado = false
     guardarStateLocalStorage();
 }
 

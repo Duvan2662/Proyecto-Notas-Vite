@@ -4,6 +4,7 @@ import { renderNota } from '../notas/use-cases/index';
 
 //Nombres de los elementos HTML
 const ElementosIDs = {
+    limpiarNotas :`.clear-completed`,
     ListaNotas : `.todo-list`,
     NuevaNota : `.new-todo`
 }
@@ -30,6 +31,7 @@ export const App = (elementoHtml) =>{
     //Referencias al DOM
     const nuevaDescripcion = document.querySelector(ElementosIDs.NuevaNota);
     const listaNotas = document.querySelector(ElementosIDs.ListaNotas);
+    const limpiarNotas = document.querySelector(ElementosIDs.limpiarNotas);
 
     //Eventos
 
@@ -44,17 +46,17 @@ export const App = (elementoHtml) =>{
         notaStore.anadirNota(evento.target.value);//Se añade la nueva nota
         displayNotas();//Se vuelve a llamar para que cargue la nueva nota
         evento.target.value = ''//Se deja en blanco el imput para escribir una nueva nota 
-    })
+    });
 
     //Evento para marcar la nota realizada o no 
     listaNotas.addEventListener('click', (evento) =>{
         const elemento = evento.target.closest('[data-id]'); //al darle click Busca el elemento mas cercano que tenga el atributo "data-id"
         notaStore.modificarEstadoNota(elemento.getAttribute(`data-id`))//elemento.getAttribute accede al id de la nota y este se pasa al cambio de estado
         displayNotas();//Se vuelve a llamar para que cargue la modificacion
-    })
+    });
+
 
     //Evento para eliminar una nota
-
     listaNotas.addEventListener('click', (evento) =>{       
         if(evento.target.className === 'destroy'){// Si se oprime la x elimina la nota 
             const elemento = evento.target.closest('[data-id]'); //al darle click Busca el elemento mas cercano que tenga el atributo "data-id"
@@ -62,6 +64,12 @@ export const App = (elementoHtml) =>{
             displayNotas();//Se vuelve a llamar para que cargue la modificacio
         }
         return;    
-   })
+   });
+
+   //Evento para eliminar varias notas al tiempo 
+   limpiarNotas.addEventListener('click',(evento)=>{
+    notaStore.borrarCompletados();
+    displayNotas();
+   });
 
 }
