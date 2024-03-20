@@ -7,7 +7,7 @@ export const Filtros = {
     Pendiente  : 'Pendiente'
 }
 
-
+//Objeto donde se guardan las notas y el estado de las mismas 
 const contenedorNotas = {
     notas : [
         new Nota('Hacer desayuno'),
@@ -15,17 +15,19 @@ const contenedorNotas = {
         new Nota('Hacer comida'),
         new Nota('Hacer tareas'),
         new Nota('Ir a trabajar'),
-
     ],
     filtros : Filtros.Todas
 }
 
 
 
+//Funciones 
+
+
 //Inicia la app
 const iniciarNotas = () =>{
     cargarStorage();
-    console.log(contenedorNotas);
+    console.log(`NOTAS APP 🦆`);
 }
 
 //Funcion que guarda las modificaciones que se le hagan a las notas (Es como un historial)
@@ -42,7 +44,6 @@ const cargarStorage = () => {
     contenedorNotas.notas = notas;//Le asigna el valor de notas 
     contenedorNotas.filtros = filtros;//Le asigna el valor al filtro  
 }
-
 
 //Funcion que me ayuda a mostrar las notas segun sus filtros 
 const obtenerNotas = (filtro = Filtros.Todas) =>{
@@ -67,6 +68,7 @@ const anadirNota = (descripccion) => {
     contenedorNotas.notas.push(new Nota(descripccion));
     guardarStateLocalStorage();
 }
+
 //Funcion para modificar notas
 const modificarEstadoNota = (notaId) => {
     contenedorNotas.notas = contenedorNotas.notas.map(nota =>{
@@ -77,6 +79,7 @@ const modificarEstadoNota = (notaId) => {
     })
     guardarStateLocalStorage();
 }
+
 //Funcion para eliminar una nota
 const eliminarNota = (notaId) => {
     contenedorNotas.notas = contenedorNotas.notas.filter(nota => nota.id !== notaId); //Devuelve el arreglo de la notas con id diferente al ingresado
@@ -99,8 +102,6 @@ const establecerFiltro = (nuevoFiltro = Filtros.Todas) =>{
 const notasFiltro = () => {
     return contenedorNotas.filtros
 }
-
-
 
 export default {
     iniciarNotas,

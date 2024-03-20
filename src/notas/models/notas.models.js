@@ -1,5 +1,6 @@
 import { v4 as idAletorio } from "uuid";
-//clase nota
+
+//clase notas
 export class Nota {
     //Propiedades
     id

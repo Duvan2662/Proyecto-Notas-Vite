@@ -1,10 +1,9 @@
 import { Nota } from "../models/notas.models";
-
 /**
  * Funcion que me permite crear el li oara cada nota para visualizarla en pantalla 
  * @param {Nota} nota Objeto nota 
  * @returns {HTMLElement} Retorna un elemento html de tipo li con la nota en ese li
- */
+*/
 
 export const crearNotaHtml = (nota) =>{
     
